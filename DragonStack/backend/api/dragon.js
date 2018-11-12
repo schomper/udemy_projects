@@ -1,7 +1,13 @@
+/**
+ * API for dragon objects
+ */
 const { Router } = require('express');
 
 const router = new Router();
 
+/**
+ * New dragon request
+ */
 router.get('/new', (req, res) => {
     res.json({ dragon: req.app.locals.engine.generation.newDragon() });
 });
