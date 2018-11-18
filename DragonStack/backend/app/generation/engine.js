@@ -1,4 +1,5 @@
 const Generation = require('./index.js');
+const GenerationTable = require('./table.js');
 
 class GenerationEngine {
     constructor() {
@@ -14,14 +15,23 @@ class GenerationEngine {
     }
 
     buildNewGeneration() {
-        this.generation = new Generation();
+        const generation = new Generation();
 
-        console.log('new generation', this.generation);
+        GenerationTable.storeGereration(generation)
+            .then(({generationId}) => {
+                this.generation = generation;
+                this.generation.generationId = generationId;
 
-        this.timer = setTimeout(
-            () => this.buildNewGeneration(), 
-            this.generation.expiration.getTime() - Date.now()
-        );
+                console.log('new generation', this.generation);
+
+                this.timer = setTimeout(
+                    () => this.buildNewGeneration(), 
+                    this.generation.expiration.getTime() - Date.now()
+                );
+            })
+            .catch(error => console.error(error));
+
+
     }
 }
 
