@@ -9,7 +9,7 @@ const router = new Router();
 /**
  * New dragon request
  */
-router.get('/new', (req, res) => {
+router.get('/new', (req, res, next) => {
     const dragon =  req.app.locals.engine.generation.newDragon();
 
     DragonTable.storeDragon(dragon)
@@ -19,7 +19,7 @@ router.get('/new', (req, res) => {
             dragon.dragonId = dragonId;
 
             res.json({ dragon});
-        }).catch((error) => console.error(error));
+        }).catch(error => next(error));
 });
 
 module.exports = router;
