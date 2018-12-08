@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
+import DragonAvatar from './DragonAvatar';
 
 const DEFAULT_DRAGON = {
         dragonId: '',
@@ -29,14 +31,10 @@ class Dragon extends Component {
     }
 
     render() {
-        const { dragon }  = this.state;
-
         return (
             <div>
-                <span>G{dragon.generationId}.</span>
-                <span>I{dragon.dragonId}. </span>
-
-                { dragon.traits.map(trait => trait.traitValue).join(', ') }
+                <Button onClick={this.fetchDragon}>New Dragon</Button>
+                <DragonAvatar dragon={this.state.dragon} />
             </div>
         )
     }
