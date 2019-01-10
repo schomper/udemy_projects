@@ -16,7 +16,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
